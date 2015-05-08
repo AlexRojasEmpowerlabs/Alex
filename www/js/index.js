@@ -1,6 +1,9 @@
 user="nouser";
 selectedTicket={};
+todosBloc={};
+todosPAP={};
 selectedUser='';
+selectedCom={};
 
 var People="[]";
 var d = new Date();
@@ -263,4 +266,85 @@ module.controller('TicketIndividualController', function($scope,$dataTickets) {
       		myDataProfile=myProfile;
       
       return myDataProfile;
+  });
+  module.controller('ECommunicator', function($scope, $http) {
+    $http.get("http://empowerlabs.com/intellibanks/data/EmpowerLabsIntra/DBTXTjson.php")
+    .success(function (response) {
+    	$scope.names = response.arr;
+    	});
+$scope.showCom=function(name){
+    	selectedCom=name;
+	$scope.ons.navigator.pushPage('detailComunicado.html');
+};
+});
+    	
+module.controller('DetailComunicadoController', function($scope) {
+	$scope.com=selectedCom;
+}); 
+
+module.controller('BlocController', function($scope, $dataBloc, $http) {
+    $scope.items = todosBloc;  
+    $http.get('http://empowerlabs.com/proyectos/trackersAPI/mblocs2/todos.php').
+  success(function(data, status, headers, config) {
+  	data.reverse();
+    $dataBloc.items=data;
+    todosBloc=data;
+    $scope.items = $dataBloc.items;  
+    $scope.showPap = function(item) {
+      var selectedItem = item;
+      $dataBloc.selectedItem = selectedItem;
+      $scope.ons.navigator.pushPage('detailMBloc.html', {title : selectedItem.title});
+    };
+  }).
+  error(function(data, status, headers, config) {
+  	
+  });
+  });
+
+  module.factory('$dataBloc', function() {
+      var data = {};
+      
+      data.items = todosBloc;
+      
+      return data;
+  });
+
+
+  module.controller('DetailBlocController', function($scope, $dataBloc) {
+    $scope.item = $dataBloc.selectedItem;
+    //navigator.notification.vibrate(2000); //milliseconds
+	//navigator.notification.beep(2); // numbr of times
+  });
+
+  module.controller('PAPController', function($scope, $dataPAP, $http) {
+    $scope.items = todosPAP;  
+    $http.get('http://empowerlabs.com/landing-pages/Leonel/prueba/pap.php').
+  success(function(data, status, headers, config) {
+  	data.reverse();
+    $dataPAP.items=data;
+    todosPAP=data;
+    $scope.items = $dataPAP.items;  
+    $scope.showDetail = function(item) {
+      var selectedItem = item;
+      $dataPAP.selectedItem = selectedItem;
+      $scope.ons.navigator.pushPage('PAPdetail.html', {title : selectedItem.title});
+    };
+  }).
+  error(function(data, status, headers, config) {
+  	
+  });
+  });
+
+  module.factory('$dataPAP', function() {
+      var data = {};
+      
+      data.items = todosPAP;
+      
+      return data;
+  });
+  
+  module.controller('DetailPAPController', function($scope, $dataPAP) {
+    $scope.item = $dataPAP.selectedItem;
+    //navigator.notification.vibrate(2000); //milliseconds
+	//navigator.notification.beep(2); // numbr of times
   });

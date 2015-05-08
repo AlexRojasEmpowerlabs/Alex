@@ -188,7 +188,7 @@
 		<ons-template id="nuevoMensaje.html">
 			<ons-page ng-controller="newMessageController">
 				
-					<ons-toolbar>
+					<ons-toolbar class="custom-toolbar">
 						<div class="left">
 							<ons-back-button>
 							Cancelar
@@ -334,9 +334,84 @@
 
 				</ons-page>
 		</ons-template>
+		
+		<ons-template id="detailComunicado.html">
+			<ons-page ng-controller="DetailComunicadoController">
+
+				<ons-toolbar class="custom-toolbar">
+					<div class="left">
+						<ons-back-button>
+							Atras
+						</ons-back-button>
+					</div>
+					<div class="center"></div>
+				</ons-toolbar>
+
+				<ons-list modifier="inset" style="margin-top: 10px">
+					<ons-list-item class="item">
+						<ons-row>
+							<ons-col width="60px">
+								<div class="item-thum">
+								</div>
+							</ons-col>
+							<ons-col>
+								<header>
+									<span class="item-title">{{com.asunto}}</span>
+									<span class="item-label">{{com.fecha}}</span>
+								</header>
+								<p class="item-desc">
+									{{com.area}}
+								</p>
+							</ons-col>
+						</ons-row>
+					</ons-list-item>
+
+					<ons-list-item modifier="chevron" ng-click="ons.navigator.pushPage('perfil.html',{animation:'fade'})">
+						<ons-icon icon="ion-chatboxes" fixed-width="true" style="color: #ccc"></ons-icon>
+						<strong>Por: </strong>{{com.author}}
+					</ons-list-item>
+				</ons-list>
+
+				<ons-list style="margin-top: 10px">
+					<ons-list-item class="item">
+						<header>
+							<span class="item-title"></span>
+						</header>
+						<p class="item-desc">
+							{{com.descripcion}}
+						</p>
+					</ons-list-item>
+				</ons-list>
+
+				<ons-list style="margin-top: 10px">
+					<ons-list-item class="item">
+						<header>
+							<span class="item-title">{{com.area}}</span>
+						</header>
+						<p class="item-desc">
+							<strong>Categoria: </strong>{{com.categoria}}
+						</p>
+					</ons-list-item>
+				</ons-list>
+
+				<ons-list style="margin-top: 10px">
+					<ons-list-item class="item">
+						<header>
+							<span class="item-title"></span>
+						</header>
+						<p class="item-desc">
+							<strong>Activo? </strong>{{com.activo}}
+						</p>
+					</ons-list-item>
+				</ons-list>
+
+				<br>
+
+			</ons-page>
+		</ons-template>
 		<ons-template id="PAP.html">
 			<ons-navigator var="navigator">
-				<ons-page ng-controller="PageController">
+				<ons-page>
 					<ons-toolbar class="custom-toolbar">
 						<div class="left">
 							<ons-toolbar-button ng-click="menu.toggle()">
@@ -346,10 +421,76 @@
 						<div class="center">
 							PAP
 						</div>
+						
+      <br>
+	<input type="search" class="search-input" style="width: 96%; margin: 6px auto 6px auto;" placeholder="Buscar" ng-model="entradaPAP" />  					    </div>
+      <ons-list ng-controller="PAPController">
+        <ons-list-item modifier="chevron" class="item" ng-repeat="item in items | filter : entradaPAP" ng-click="showPap(item)">
+          <ons-row>
+              <ons-col>
+              <header>
+                <span class="item-title">{{item.Nom}}</span>
+                <span class="item-label">{{item.fecha}}</span>
+				
+              </header>
+              <p class="item-desc"><strong>PAP: </strong>{{item.Titulo}}</p>
+              <p class="item-desc"><strong>Estado: </strong>{{item.Estado}}</p>
+			  <p class="item-desc"><strong>Prioridad: </strong>{{item.Prioridad}}</p>
+            </ons-col>
+          </ons-row>                          
+        </ons-list-item>
+      </ons-list>
 					</ons-toolbar>
 				</ons-page>
 			</ons-navigator>
 		</ons-template>
+		
+  <ons-template id="PAPdetail.html">
+    <ons-page ng-controller="DetailPAPController">
+
+      <ons-toolbar>
+        <div class="left"><ons-back-button>Back</ons-back-button></div>
+        <div class="center">Detalles</div>
+      </ons-toolbar>
+      <br>
+      <ons-list modifier="inset" style="margin-top: 10px">
+        <ons-list-item class="item">
+          <ons-row>
+            <ons-col>
+              <header>
+                <span class="item-title">{{item.Titulo}}</span>
+                <span class="item-label">{{item.nombre}}</span>
+              </header>
+			  <p class="item-desc">Porcentaje: {{item.Porcentaje}}</p>
+			  <span class="item-desc">Prioridad:{{item.Prioridad}}</span>
+            </ons-col>
+          </ons-row>
+        </ons-list-item>
+
+        <ons-list-item modifier="chevron" ng-click="doSomething()">
+          <ons-icon icon="ion-chatboxes" fixed-width="true" style="color: #ccc"></ons-icon>
+          <strong>Por: </strong>{{item.Nombre}}
+		  <span class="item-label">{{item.fecha}}</span>
+		  <span class="item-title">{{item.nombre}}</span>
+        </ons-list-item>
+      </ons-list>
+
+      <ons-list style="margin-top: 10px">
+        <ons-list-item class="item">
+          <header>
+            <p class="item-desc">{{item.fecha}}</p>
+          </header>
+          <p class="item-desc">Tiempo de desarrollo: {{item.Tiempo}}</p>
+		  <p class="item-desc">Descripción:{{item.Descripcion}}</p>
+		  <p class="item-desc">Fecha Inicial: {{item.Fechai}}</p>
+	      <span class="item-desc">Fecha final:{{item.Fechaf}}</span>
+        </ons-list-item>
+      </ons-list>
+
+      <br>
+
+    </ons-page>
+  </ons-template>
 		<ons-template id="Workflow.html">
 			<ons-navigator var="navigator">
 				<ons-page ng-controller="PageController">
@@ -368,7 +509,7 @@
 		</ons-template>
 		<ons-template id="eCommunicator.html">
 			<ons-navigator var="navigator">
-				<ons-page ng-controller="PageController">
+				<ons-page ng-controller="ECommunicator">
 					<ons-toolbar class="custom-toolbar">
 						<div class="left">
 							<ons-toolbar-button ng-click="menu.toggle()">
@@ -376,16 +517,36 @@
 							</ons-toolbar-button>
 						</div>
 						<div class="center">
-							E - Communicator
+							eCommunicator
 						</div>
 					</ons-toolbar>
 					
+					<ons-list style="margin-top: 30px">
+
+						<!--<div id="ticketbox"></div>-->
+						<ons-list-item modifier="chevron" class="item" ng-repeat="name in names" ng-click="showCom(name)">
+							<ons-row>
+								<ons-col width="60px">
+									<div class="item-thum"></div>
+								</ons-col>
+								<ons-col>
+									<header>
+										<span class="item-title">{{name.asunto}}</span>
+										<span class="item-label">{{name.fecha}}</span>
+									</header>
+									<p class="item-desc">
+										{{name.descripcion}}
+									</p>
+								</ons-col>
+							</ons-row>
+						</ons-list-item>
+					</ons-list>
 				</ons-page>
 			</ons-navigator>
 		</ons-template>
 		<ons-template id="mblocs.html">
 			<ons-navigator var="navigator">
-				<ons-page ng-controller="PageController">
+				<ons-page>
 					<ons-toolbar class="custom-toolbar">
 						<div class="left">
 							<ons-toolbar-button ng-click="menu.toggle()">
@@ -395,10 +556,56 @@
 						<div class="center">
 							mBlocs
 						</div>
+						
 					</ons-toolbar>
+					<br>
+						<input type="search" class="search-input" style="width: 96%; margin: 6px auto 6px auto;" 
+                        placeholder="Buscar" ng-model="mBlocs">
+      				<ons-list ng-controller="BlocController">
+       					<ons-list-item modifier="chevron" class="item" ng-repeat="item in items | filter : mBlocs" 
+                        ng-click="showDetail(item)">
+          					<ons-row>                                
+            					<ons-col>                                
+                					<span class="item-title">{{item.Name}}</span>
+                					<span class="item-label">{{item.item.Status}}</span>			
+              						<p class="item-desc"><strong>Estado: </strong>{{item.Status}}</p>
+			  						<p class="item-desc"><strong>Tipo: </strong>{{item.Type}}</p>
+                                    <p class="item-desc"><strong>Por: </strong>{{item.Contributed}}</p>
+            					</ons-col>
+          					</ons-row>                          
+        				</ons-list-item>
+      				</ons-list>
 				</ons-page>
 			</ons-navigator>
 		</ons-template>
+		
+		<ons-template id="detailMBloc.html">
+    		<ons-page ng-controller="DetailBlocController">
+				<ons-toolbar class="custom-toolbar">
+        			<div class="left"><ons-back-button>Atras</ons-back-button></div>
+        			<div class="center">Detalles</div>
+     			</ons-toolbar>
+<br>
+      			<ons-list modifier="inset" style="margin-top: 10px">
+        			<ons-list-item class="item">
+         				<ons-row>
+            				<ons-col>
+                				<p align="center"><span class="item-title">{{item.Name}}</span></p>
+                                <p align="right"><span class="item-desc">{{item.Date_of_last_update}}</span></p>
+								<p class="item-desc"><strong>Descripción: </strong>{{item.Description}}</p>
+								<p class="item-desc"><strong>Autor: </strong>{{item.Author}}</p>
+                                <p class="item-desc"><strong>Idioma: </strong>{{item.Language}}</p>
+                                <p class="item-desc"><strong>Mas información: </strong>{{item.More_information}}</p>
+            				</ons-col>
+          				</ons-row>
+       				</ons-list-item>
+
+        			<ons-list-item modifier="chevron" ng-click="doSomething()">
+          				<p class="item-desc"><strong>Por: </strong>{{item.Contributed}}</p>
+        			</ons-list-item>
+      			</ons-list>
+    		</ons-page>
+  		</ons-template>
 		
 		<ons-template id="login2.html">
 			<ons-page style="background-image: url('splash.png'); no-repeat center center fixed; 
