@@ -324,7 +324,7 @@ module.controller('BlocController', function($scope, $dataBloc, $http) {
     $dataPAP.items=data;
     todosPAP=data;
     $scope.items = $dataPAP.items;  
-    $scope.showDetail = function(item) {
+    $scope.showPap = function(item) {
       var selectedItem = item;
       $dataPAP.selectedItem = selectedItem;
       $scope.ons.navigator.pushPage('PAPdetail.html', {title : selectedItem.title});

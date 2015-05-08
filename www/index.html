@@ -422,6 +422,7 @@
 							PAP
 						</div>
 						
+					</ons-toolbar>
       <br>
 	<input type="search" class="search-input" style="width: 96%; margin: 6px auto 6px auto;" placeholder="Buscar" ng-model="entradaPAP" />  					    </div>
       <ons-list ng-controller="PAPController">
@@ -440,7 +441,6 @@
           </ons-row>                          
         </ons-list-item>
       </ons-list>
-					</ons-toolbar>
 				</ons-page>
 			</ons-navigator>
 		</ons-template>
@@ -448,7 +448,7 @@
   <ons-template id="PAPdetail.html">
     <ons-page ng-controller="DetailPAPController">
 
-      <ons-toolbar>
+      <ons-toolbar class="custom-toolbar">
         <div class="left"><ons-back-button>Back</ons-back-button></div>
         <div class="center">Detalles</div>
       </ons-toolbar>
