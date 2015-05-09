@@ -4,6 +4,7 @@ todosBloc={};
 todosPAP={};
 selectedUser='';
 selectedCom={};
+selectedCuenta={};
 
 var People="[]";
 var d = new Date();
@@ -347,4 +348,26 @@ module.controller('BlocController', function($scope, $dataBloc, $http) {
     $scope.item = $dataPAP.selectedItem;
     //navigator.notification.vibrate(2000); //milliseconds
 	//navigator.notification.beep(2); // numbr of times
+  });
+
+  module.controller('WorkflowController', function($scope) {
+  	$scope.cuentas=function(){
+  		$scope.ons.navigator.pushPage('modCuentas.html');
+  	};
+  });
+  
+  module.controller('modCuentasController', function($scope,$http) {
+  	$scope.base={};
+  	$http.get('http://www.empowerlabs.com/intellibanks/data/Sandbox/JSonCuentas.php').
+  	success(function(data){
+  		$scope.base=data;
+  	});
+  	$scope.cuentaOne=function(b){
+  		selectedCuenta=b;
+  		$scope.ons.navigator.pushPage('cuentas.html');
+  	};
+  });
+  
+  module.controller('cuentasController', function($scope) {
+    $scope.b = selectedCuenta;
   });
