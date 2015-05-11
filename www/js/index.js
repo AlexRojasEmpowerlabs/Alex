@@ -354,6 +354,12 @@ module.controller('BlocController', function($scope, $dataBloc, $http) {
   	$scope.cuentas=function(){
   		$scope.ons.navigator.pushPage('modCuentas.html');
   	};
+    $scope.contactos=function(){
+  		$scope.ons.navigator.pushPage('modContactos.html');
+  	};
+    $scope.pipeline=function(){
+  		$scope.ons.navigator.pushPage('modPipeline.html');
+  	};
   });
   
   module.controller('modCuentasController', function($scope,$http) {
@@ -367,9 +373,44 @@ module.controller('BlocController', function($scope, $dataBloc, $http) {
   		$scope.ons.navigator.pushPage('cuentas.html');
   	};
   });
+
+  module.controller('modContactosController', function($scope,$http) {
+  	$scope.base={};
+  	$http.get('http://www.empowerlabs.com/intellibanks/data/Sandbox/JSonContactos.php').
+  	success(function(data){
+  		$scope.base=data;
+  	});
+  	$scope.contactoOne=function(b){
+  		selectedContacto=b;
+  		$scope.ons.navigator.pushPage('contactos.html');
+  	};
+  });
+
+  module.controller('modPipelineController', function($scope,$http) {
+  	$scope.base={};
+  	$http.get('http://www.empowerlabs.com/intellibanks/data/Sandbox/JSonPipeline.php').
+  	success(function(data){
+  		$scope.base=data;
+  	});
+  	$scope.pipelineOne=function(b){
+  		selectedPipeline=b;
+  		$scope.ons.navigator.pushPage('pipeline.html');
+  	};
+  });
+
+
   
+    
   module.controller('cuentasController', function($scope) {
     $scope.b = selectedCuenta;
+  });
+
+   module.controller('contactosController', function($scope) {
+    $scope.b = selectedContacto;
+  });
+
+   module.controller('pipelineController', function($scope) {
+    $scope.b = selectedPipeline;
   });
 
   module.controller('HomeController', function($scope) {
