@@ -95,7 +95,7 @@
 		</ons-template>
 		<ons-template id="page1.html">
 			<ons-navigator var="navigator">
-				<ons-page ng-controller="PageController">
+				<ons-page ng-controller="HomeController">
 					<ons-toolbar class="custom-toolbar">
 						<div class="left">
 							<ons-toolbar-button ng-click="menu.toggle()">
@@ -106,16 +106,7 @@
 							EmpowerLabsIntra
 						</div>
 					</ons-toolbar>
-					<p>link test<br /><br />
-  <a href="#" onclick="window.open('http://www.wikipedia.org','_self','location=yes')">Wikipedia (webview)</a><br /><br />
-  <a href="#" onclick="window.open('http://www.wikipedia.org','_blank','location=yes')">Wikipedia (inAppBrowser)</a><br /><br />
-  <a href="#" onclick="window.open('http://www.wikipedia.org','_system','location=yes')">Wikipedia (mobile browser)</a><br /><br />
-  </p>
-  <p>button test<br /><br />
-  <button type="button" onclick="window.open('http://www.wikipedia.org','_self','location=yes')">Wikipedia (webview)</button><br /><br />
-  <button type="button" onclick="window.open('http://www.wikipedia.org','_blank','location=yes')">Wikipedia (inAppBrowser)</button><br /><br />
-  <button type="button" onclick="window.open('http://www.wikipedia.org','_system','location=yes')">Wikipedia (mobile browser)</button><br /><br />  
-  </p>
+					<div id="player"></div>
 				</ons-page>
 			</ons-navigator>
 		</ons-template>
