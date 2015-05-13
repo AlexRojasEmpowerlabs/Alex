@@ -102,7 +102,14 @@ module.controller('MensajeController', function($scope,$timeout,$http) {
 							
 						}
 						else{
-							$scope.res= data.detail.reverse();
+							
+							for(i=0;i<data.detail.length;i++){
+								if(data.detail[i].from==user)
+								data.detail[i].clase="derecha";
+								else 
+								data.detail[i].clase="izquierda";
+							}
+							//$scope.res= data.detail.reverse();
                           $scope.size=$scope.res.length;
 						}
                           

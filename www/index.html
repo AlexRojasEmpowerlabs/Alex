@@ -160,22 +160,11 @@
 				<ons-list style="margin-top: 50px">
 
 					<!--<div id="ticketbox"></div>-->
-					<ons-list-item class="item" ng-repeat="r in res | filter : entradaTicket" ng-click="showTicket(item)">
-						<ons-row>
-							<ons-col width="60px">
-								<div class="item-thum"><img style="height: 50px; width: 50px;" src="{{item.thum}}"/>
-								</div>
-							</ons-col>
-							<ons-col>
-								<header>
-									<span class="item-title">{{r.from}}</span>
-									<span class="item-label">{{r.time}}</span>
-								</header>
-								<p class="item-desc">
+					<ons-list-item  ng-repeat="r in res">
+						
+								<p class="{{r.clase}}">
 									{{r.message}}
 								</p>
-							</ons-col>
-						</ons-row>
 					</ons-list-item>
 				</ons-list>
 				<!---->
