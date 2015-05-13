@@ -109,7 +109,7 @@ module.controller('MensajeController', function($scope,$timeout,$http) {
 								else 
 								data.detail[i].clase="izquierda";
 							}
-							//$scope.res= data.detail.reverse();
+							$scope.res= data.detail.reverse();
                           $scope.size=$scope.res.length;
 						}
                           
