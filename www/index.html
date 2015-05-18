@@ -170,7 +170,7 @@
 				<!---->
 				
 				<ons-bottom-toolbar>
-					<input type="text" class="text-input" style="width: 85%; margin-left: 8px; margin-top: 8px" placeholder="Message" ng-model="mensajeBox.message">
+					<input type="text" class="text-input" style="width: 85%; margin-left: 8px; margin-top: 8px; color: #000000" placeholder="Message" ng-model="mensajeBox.message">
 					<i class="ion-android-send" style="font-size:18px; float: right; margin-right: 8px; margin-top: 12px" ng-click="enviarMensaje()"></i>
 				</ons-bottom-toolbar>
 			</ons-page>
@@ -1742,13 +1742,16 @@
 	
 <!--login-->
 		<ons-template id="login2.html">
-			<ons-page style="background-image: url('splash.png'); no-repeat center center fixed;
-			-webkit-background-size: cover;
-			background-size: cover;" ng-controller="LoginController">
+			<ons-page  ng-controller="LoginController">
 
 				<div class="login-form2">
 					<div class="center">
 						<form id="logueo2">
+							<br>
+							<img src="icon.png" />
+							<br>
+							<br>
+							<br>
 							<input ng-model="formLogin.nombre" name="nombre" type="text" class="text-input--underbar login-boxes" placeholder="Usuario" style="background: rgba(255, 255, 255, 0.4); text-align: center; border-radius: 5px;" />
 							<br>
 							<input ng-model="formLogin.pass" name="pass" type="password" class="text-input--underbar login-boxes" placeholder="Contraseña" style="background: rgba(255, 255, 255, 0.4);; text-align: center; border-radius: 5px;" />
@@ -1758,7 +1761,9 @@
 								Log In
 							</ons-button>
 							<br>
-						</form>
+							
+					</form><br>
+					
 					</div>
 
 				</div>
